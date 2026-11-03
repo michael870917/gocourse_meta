@@ -1,7 +1,6 @@
 package meta
 
 import (
-	"os"
 	"strconv"
 )
 
@@ -12,11 +11,11 @@ type Meta struct {
 	TotalCount int `json:"total_count"`
 }
 
-func New(page, perPage, total int) (*Meta, error) {
+func New(page, perPage, total int, pagLimitDefault string) (*Meta, error) {
 
 	if perPage <= 0 {
 		var err error
-		perPage, err = strconv.Atoi(os.Getenv("PAGINATOR_LIMIT_DEFAULT"))
+		perPage, err = strconv.Atoi(pagLimitDefault)
 		if err != nil {
 			return nil, err
 		}
